@@ -30,19 +30,19 @@ function RegisterPage() {
     }
 
     if (!formValues.email.trim()) {
-      return "El correo electronico es obligatorio.";
+      return "El correo electrónico es obligatorio.";
     }
 
     if (!/\S+@\S+\.\S+/.test(formValues.email)) {
-      return "Ingresa un correo electronico valido.";
+      return "Ingresa un correo electrónico válido.";
     }
 
     if (!formValues.password) {
-      return "La contrasena es obligatoria.";
+      return "La contraseña es obligatoria.";
     }
 
     if (formValues.password.length < 8) {
-      return "La contrasena debe tener al menos 8 caracteres.";
+      return "La contraseña debe tener al menos 8 caracteres.";
     }
 
     return "";
@@ -79,7 +79,7 @@ function RegisterPage() {
         <div className="auth-card__header">
           <p className="section-kicker">Registro</p>
           <h2>Crea tu cuenta</h2>
-          <p>Cuando completes el registro, entraras automaticamente a tus autos.</p>
+          <p>Cuando completes el registro, entrarás automáticamente a tus autos.</p>
         </div>
 
         {errorMessage ? (
@@ -100,7 +100,7 @@ function RegisterPage() {
           </label>
 
           <label className="field">
-            <span>Correo electronico</span>
+            <span>Correo electrónico</span>
             <input
               type="email"
               name="email"
@@ -112,13 +112,13 @@ function RegisterPage() {
           </label>
 
           <label className="field">
-            <span>Contrasena</span>
+            <span>Contraseña</span>
             <input
               type="password"
               name="password"
               value={formValues.password}
               onChange={handleChange}
-              placeholder="Elige una contrasena segura"
+              placeholder="Elige una contraseña segura"
               disabled={loading}
             />
           </label>
@@ -133,7 +133,7 @@ function RegisterPage() {
         </form>
 
         <p className="auth-card__footer">
-          Ya tienes una cuenta? <Link to={ROUTES.login}>Iniciar sesion</Link>
+          ¿Ya tienes una cuenta? <Link to={ROUTES.login}>Iniciar sesión</Link>
         </p>
       </div>
     </section>

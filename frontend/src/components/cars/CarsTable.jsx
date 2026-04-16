@@ -1,15 +1,16 @@
 function CarsTable({ cars, deletingId, onEdit, onDelete }) {
   return (
     <div className="panel">
-      <div className="panel__header">
+      <div className="panel__header panel__header--split">
         <div>
-          <p className="section-kicker">Tu garaje</p>
+          <p className="section-kicker">Listado</p>
           <h2>Autos registrados</h2>
-          <p>
-            {cars.length} resultado{cars.length === 1 ? "" : "s"} disponible
-            {cars.length === 1 ? "" : "s"}.
-          </p>
+          <p>Consulta, edita o elimina los vehículos guardados en tu cuenta.</p>
         </div>
+
+        <span className="results-badge">
+          {cars.length} resultado{cars.length === 1 ? "" : "s"}
+        </span>
       </div>
 
       <div className="table-scroll cars-table-wrap">
@@ -18,7 +19,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
             <tr>
               <th>Marca</th>
               <th>Modelo</th>
-              <th>Anio</th>
+              <th>Año</th>
               <th>Placa</th>
               <th>Color</th>
               <th>Foto</th>
@@ -31,7 +32,9 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                 <td>{car.brand}</td>
                 <td>{car.model}</td>
                 <td>{car.year}</td>
-                <td>{car.plateNumber}</td>
+                <td>
+                  <span className="plate-badge">{car.plateNumber}</span>
+                </td>
                 <td>{car.color}</td>
                 <td>
                   {car.photoName ? (
@@ -90,7 +93,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                 <dd>{car.model}</dd>
               </div>
               <div>
-                <dt>Anio</dt>
+                <dt>Año</dt>
                 <dd>{car.year}</dd>
               </div>
               <div>

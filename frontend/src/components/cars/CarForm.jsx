@@ -92,7 +92,7 @@ function CarForm({
       <div className="panel__header">
         <div>
           <p className="section-kicker">{isEditing ? "Editar auto" : "Nuevo auto"}</p>
-          <h2>{isEditing ? "Actualizar datos del vehiculo" : "Registrar un nuevo auto"}</h2>
+          <h2>{isEditing ? "Actualizar datos del vehículo" : "Registrar un nuevo auto"}</h2>
         </div>
       </div>
 
@@ -162,7 +162,7 @@ function CarForm({
             name="color"
             value={formValues.color}
             onChange={handleChange}
-            placeholder="White"
+            placeholder="Blanco"
             disabled={submitting || loading}
           />
           {fieldErrors.color ? (
@@ -176,11 +176,11 @@ function CarForm({
             name="photoName"
             value={formValues.photoName}
             onChange={handleChange}
-            placeholder="Foto-auto.jpg"
+            placeholder="foto-auto.jpg"
             disabled={submitting || loading}
           />
           <small className="field__hint">
-            Campo simulado solo para presentacion. No se realiza una carga real.
+            Campo simulado solo para presentación. No se realiza una carga real.
           </small>
         </label>
 
@@ -200,7 +200,7 @@ function CarForm({
               onClick={onCancel}
               disabled={submitting || loading}
             >
-              Cancelar edicion
+              Cancelar edición
             </button>
           ) : null}
         </div>
