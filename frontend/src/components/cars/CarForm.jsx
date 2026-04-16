@@ -6,25 +6,25 @@ function validateCar(values) {
   const year = Number(values.year);
 
   if (!values.brand.trim()) {
-    errors.brand = "Brand is required.";
+    errors.brand = "La marca es obligatoria.";
   }
 
   if (!values.model.trim()) {
-    errors.model = "Model is required.";
+    errors.model = "El modelo es obligatorio.";
   }
 
   if (!values.plateNumber.trim()) {
-    errors.plateNumber = "Plate number is required.";
+    errors.plateNumber = "La placa es obligatoria.";
   }
 
   if (!values.color.trim()) {
-    errors.color = "Color is required.";
+    errors.color = "El color es obligatorio.";
   }
 
   if (!values.year) {
-    errors.year = "Year is required.";
+    errors.year = "El año es obligatorio.";
   } else if (Number.isNaN(year) || year < 1886 || year > 2100) {
-    errors.year = "Year must be between 1886 and 2100.";
+    errors.year = "El año debe estar entre 1886 y 2100.";
   }
 
   return errors;
@@ -91,14 +91,14 @@ function CarForm({
     <section className="panel">
       <div className="panel__header">
         <div>
-          <p className="section-kicker">{isEditing ? "Edit car" : "New car"}</p>
-          <h2>{isEditing ? "Update vehicle data" : "Create a new car"}</h2>
+          <p className="section-kicker">{isEditing ? "Editar auto" : "Nuevo auto"}</p>
+          <h2>{isEditing ? "Actualizar datos del vehiculo" : "Registrar un nuevo auto"}</h2>
         </div>
       </div>
 
       <form className="form-grid" onSubmit={handleSubmit}>
         <label className="field">
-          <span>Brand</span>
+          <span>Marca</span>
           <input
             name="brand"
             value={formValues.brand}
@@ -112,7 +112,7 @@ function CarForm({
         </label>
 
         <label className="field">
-          <span>Model</span>
+          <span>Modelo</span>
           <input
             name="model"
             value={formValues.model}
@@ -126,7 +126,7 @@ function CarForm({
         </label>
 
         <label className="field">
-          <span>Year</span>
+          <span>Año</span>
           <input
             name="year"
             type="number"
@@ -143,7 +143,7 @@ function CarForm({
         </label>
 
         <label className="field">
-          <span>Plate number</span>
+          <span>Placa</span>
           <input
             name="plateNumber"
             value={formValues.plateNumber}
@@ -171,16 +171,16 @@ function CarForm({
         </label>
 
         <label className="field">
-          <span>Photo name</span>
+          <span>Nombre de la foto</span>
           <input
             name="photoName"
             value={formValues.photoName}
             onChange={handleChange}
-            placeholder="front-view.jpg"
+            placeholder="Foto-auto.jpg"
             disabled={submitting || loading}
           />
           <small className="field__hint">
-            Optional simulated field for presentation only. No real upload is performed.
+            Campo simulado solo para presentacion. No se realiza una carga real.
           </small>
         </label>
 
@@ -190,7 +190,7 @@ function CarForm({
             className="button button--primary"
             disabled={submitting || loading}
           >
-            {submitting ? "Saving..." : isEditing ? "Update car" : "Create car"}
+            {submitting ? "Guardando..." : isEditing ? "Actualizar auto" : "Crear auto"}
           </button>
 
           {isEditing ? (
@@ -200,7 +200,7 @@ function CarForm({
               onClick={onCancel}
               disabled={submitting || loading}
             >
-              Cancel edit
+              Cancelar edicion
             </button>
           ) : null}
         </div>

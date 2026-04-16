@@ -26,23 +26,23 @@ function RegisterPage() {
 
   function validateForm() {
     if (!formValues.name.trim()) {
-      return "Name is required.";
+      return "El nombre es obligatorio.";
     }
 
     if (!formValues.email.trim()) {
-      return "Email is required.";
+      return "El correo electronico es obligatorio.";
     }
 
     if (!/\S+@\S+\.\S+/.test(formValues.email)) {
-      return "Enter a valid email address.";
+      return "Ingresa un correo electronico valido.";
     }
 
     if (!formValues.password) {
-      return "Password is required.";
+      return "La contrasena es obligatoria.";
     }
 
     if (formValues.password.length < 8) {
-      return "Password must contain at least 8 characters.";
+      return "La contrasena debe tener al menos 8 caracteres.";
     }
 
     return "";
@@ -67,7 +67,7 @@ function RegisterPage() {
       });
       navigate(ROUTES.cars, { replace: true });
     } catch (error) {
-      setErrorMessage(getErrorMessage(error, "Unable to register user."));
+      setErrorMessage(getErrorMessage(error, "No fue posible registrar el usuario."));
     } finally {
       setLoading(false);
     }
@@ -77,9 +77,9 @@ function RegisterPage() {
     <section className="auth-page">
       <div className="auth-card">
         <div className="auth-card__header">
-          <p className="section-kicker">Registration</p>
-          <h2>Create your account</h2>
-          <p>Once registered, you will be signed in and redirected to your cars.</p>
+          <p className="section-kicker">Registro</p>
+          <h2>Crea tu cuenta</h2>
+          <p>Cuando completes el registro, entraras automaticamente a tus autos.</p>
         </div>
 
         {errorMessage ? (
@@ -88,37 +88,37 @@ function RegisterPage() {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <label className="field">
-            <span>Name</span>
+            <span>Nombre</span>
             <input
               type="text"
               name="name"
               value={formValues.name}
               onChange={handleChange}
-              placeholder="Your full name"
+              placeholder="Tu nombre completo"
               disabled={loading}
             />
           </label>
 
           <label className="field">
-            <span>Email</span>
+            <span>Correo electronico</span>
             <input
               type="email"
               name="email"
               value={formValues.email}
               onChange={handleChange}
-              placeholder="you@example.com"
+              placeholder="correo@ejemplo.com"
               disabled={loading}
             />
           </label>
 
           <label className="field">
-            <span>Password</span>
+            <span>Contrasena</span>
             <input
               type="password"
               name="password"
               value={formValues.password}
               onChange={handleChange}
-              placeholder="Choose a secure password"
+              placeholder="Elige una contrasena segura"
               disabled={loading}
             />
           </label>
@@ -128,12 +128,12 @@ function RegisterPage() {
             className="button button--primary button--block"
             disabled={loading}
           >
-            {loading ? "Creating account..." : "Register"}
+            {loading ? "Creando cuenta..." : "Registrarse"}
           </button>
         </form>
 
         <p className="auth-card__footer">
-          Already have an account? <Link to={ROUTES.login}>Sign in</Link>
+          Ya tienes una cuenta? <Link to={ROUTES.login}>Iniciar sesion</Link>
         </p>
       </div>
     </section>

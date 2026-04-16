@@ -1,4 +1,4 @@
-export function getErrorMessage(error, fallback = "Something went wrong.") {
+export function getErrorMessage(error, fallback = "Ocurrio un error inesperado.") {
   const validationErrors = error.response?.data?.validationErrors;
 
   if (validationErrors && typeof validationErrors === "object") {
@@ -14,7 +14,7 @@ export function getErrorMessage(error, fallback = "Something went wrong.") {
   }
 
   if (error.message === "Network Error") {
-    return "Unable to connect to the backend. Check that the API is running.";
+    return "No fue posible conectarse con el backend. Verifica que la API este en ejecucion.";
   }
 
   if (error.message) {

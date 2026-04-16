@@ -26,19 +26,19 @@ function LoginPage() {
 
   function validateForm() {
     if (!formValues.email.trim()) {
-      return "Email is required.";
+      return "El correo electronico es obligatorio.";
     }
 
     if (!/\S+@\S+\.\S+/.test(formValues.email)) {
-      return "Enter a valid email address.";
+      return "Ingresa un correo electronico valido.";
     }
 
     if (!formValues.password) {
-      return "Password is required.";
+      return "La contrasena es obligatoria.";
     }
 
     if (formValues.password.length < 8) {
-      return "Password must contain at least 8 characters.";
+      return "La contrasena debe tener al menos 8 caracteres.";
     }
 
     return "";
@@ -62,7 +62,7 @@ function LoginPage() {
       });
       navigate(ROUTES.cars, { replace: true });
     } catch (error) {
-      setErrorMessage(getErrorMessage(error, "Unable to sign in."));
+      setErrorMessage(getErrorMessage(error, "No fue posible iniciar sesion."));
     } finally {
       setLoading(false);
     }
@@ -72,14 +72,14 @@ function LoginPage() {
     <section className="auth-page">
       <div className="auth-card">
         <div className="auth-card__header">
-          <p className="section-kicker">Authentication</p>
-          <h2>Sign in to manage your cars</h2>
-          <p>Use your registered email and password to access the private area.</p>
+          <p className="section-kicker">Autenticacion</p>
+          <h2>Inicia sesion para gestionar tus autos</h2>
+          <p>Usa tu correo registrado y tu contrasena para entrar al area privada.</p>
         </div>
 
         {location.state?.sessionExpired ? (
           <div className="alert alert--warning">
-            Your session is no longer valid. Please sign in again.
+            Tu sesion ya no es valida. Inicia sesion nuevamente.
           </div>
         ) : null}
 
@@ -89,25 +89,25 @@ function LoginPage() {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <label className="field">
-            <span>Email</span>
+            <span>Correo electronico</span>
             <input
               type="email"
               name="email"
               value={formValues.email}
               onChange={handleChange}
-              placeholder="you@example.com"
+              placeholder="correo@ejemplo.com"
               disabled={loading}
             />
           </label>
 
           <label className="field">
-            <span>Password</span>
+            <span>Contrasena</span>
             <input
               type="password"
               name="password"
               value={formValues.password}
               onChange={handleChange}
-              placeholder="Enter your password"
+              placeholder="Ingresa tu contrasena"
               disabled={loading}
             />
           </label>
@@ -117,12 +117,12 @@ function LoginPage() {
             className="button button--primary button--block"
             disabled={loading}
           >
-            {loading ? "Signing in..." : "Login"}
+            {loading ? "Ingresando..." : "Iniciar sesion"}
           </button>
         </form>
 
         <p className="auth-card__footer">
-          Don&apos;t have an account? <Link to={ROUTES.register}>Create one</Link>
+          No tienes una cuenta? <Link to={ROUTES.register}>Crear cuenta</Link>
         </p>
       </div>
     </section>

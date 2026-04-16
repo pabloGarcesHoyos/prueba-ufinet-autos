@@ -55,7 +55,7 @@ function CarsPage() {
       setCars(data);
       return data;
     } catch (error) {
-      setPageError(getErrorMessage(error, "Unable to load your cars."));
+      setPageError(getErrorMessage(error, "No fue posible cargar tus autos."));
       return [];
     } finally {
       setLoading(false);
@@ -122,11 +122,11 @@ function CarsPage() {
 
       if (mode === "edit" && editingId) {
         await carService.updateCar(editingId, payload);
-        setNotice("Car updated successfully.");
+        setNotice("Auto actualizado correctamente.");
       } else {
         const createdCar = await carService.createCar(payload);
         affectedCarId = createdCar?.id || null;
-        setNotice("Car created successfully.");
+        setNotice("Auto creado correctamente.");
       }
 
       resetForm();
@@ -140,7 +140,7 @@ function CarsPage() {
 
       updateCarPhoto(affectedCarId, photoName);
     } catch (error) {
-      setFormError(getErrorMessage(error, "Unable to save car data."));
+      setFormError(getErrorMessage(error, "No fue posible guardar la informacion del auto."));
     } finally {
       setSubmitting(false);
     }
@@ -163,7 +163,7 @@ function CarsPage() {
         photoName: getPhotoName(id),
       });
     } catch (error) {
-      setPageError(getErrorMessage(error, "Unable to load car details."));
+      setPageError(getErrorMessage(error, "No fue posible cargar el detalle del auto."));
     } finally {
       setFormLoading(false);
     }
@@ -171,7 +171,7 @@ function CarsPage() {
 
   async function handleDelete(id) {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this car?"
+      "Estas seguro de que deseas eliminar este auto?"
     );
 
     if (!confirmed) {
@@ -189,10 +189,10 @@ function CarsPage() {
       }
 
       removeCarPhoto(id);
-      setNotice("Car deleted successfully.");
+      setNotice("Auto eliminado correctamente.");
       await loadCars();
     } catch (error) {
-      setPageError(getErrorMessage(error, "Unable to delete the car."));
+      setPageError(getErrorMessage(error, "No fue posible eliminar el auto."));
     } finally {
       setDeletingId(null);
     }
@@ -237,23 +237,23 @@ function CarsPage() {
   const totalCars = carsWithPhoto.length;
   const resultLabel =
     totalCars === 0
-      ? "No cars in your garage yet."
-      : `${filteredCars.length} of ${totalCars} car${totalCars === 1 ? "" : "s"} shown`;
+      ? "Aun no tienes autos registrados."
+      : `${filteredCars.length} de ${totalCars} auto${totalCars === 1 ? "" : "s"} mostrados`;
 
   return (
     <section className="cars-page">
       <div className="page-intro">
         <div>
-          <p className="section-kicker">Private area</p>
-          <h2>Cars dashboard</h2>
+          <p className="section-kicker">Area privada</p>
+          <h2>Panel de autos</h2>
           <p>
-            Manage the vehicles linked to {user?.name || user?.email || "your account"}.
+            Gestiona los vehiculos asociados a {user?.name || user?.email || "tu cuenta"}.
           </p>
         </div>
 
         <div className="summary-chip">
           <strong>{totalCars}</strong>
-          <span>{totalCars === 1 ? "car registered" : "cars registered"}</span>
+          <span>{totalCars === 1 ? "auto registrado" : "autos registrados"}</span>
         </div>
       </div>
 
@@ -275,8 +275,8 @@ function CarsPage() {
           <section className="panel filters-panel">
             <div className="filters-panel__header">
               <div>
-                <p className="section-kicker">Discover faster</p>
-                <h2>Search and filter</h2>
+                <p className="section-kicker">Consulta rapida</p>
+                <h2>Busqueda y filtros</h2>
                 <p className="results-copy">{resultLabel}</p>
               </div>
 
@@ -286,28 +286,28 @@ function CarsPage() {
                 onClick={clearFilters}
                 disabled={!hasActiveFilters}
               >
-                Clear filters
+                Limpiar filtros
               </button>
             </div>
 
             <div className="filters-grid">
               <label className="field field--search">
-                <span>Search by plate or model</span>
+                <span>Buscar por placa o modelo</span>
                 <input
                   type="search"
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
-                  placeholder="Type a plate or model"
+                  placeholder="Escribe una placa o un modelo"
                 />
               </label>
 
               <label className="field">
-                <span>Brand</span>
+                <span>Marca</span>
                 <select
                   value={selectedBrand}
                   onChange={(event) => setSelectedBrand(event.target.value)}
                 >
-                  <option value="">All brands</option>
+                  <option value="">Todas las marcas</option>
                   {brandOptions.map((brand) => (
                     <option key={brand} value={brand}>
                       {brand}
@@ -317,12 +317,12 @@ function CarsPage() {
               </label>
 
               <label className="field">
-                <span>Year</span>
+                <span>Anio</span>
                 <select
                   value={selectedYear}
                   onChange={(event) => setSelectedYear(event.target.value)}
                 >
-                  <option value="">All years</option>
+                  <option value="">Todos los anios</option>
                   {yearOptions.map((year) => (
                     <option key={year} value={year}>
                       {year}
@@ -335,21 +335,21 @@ function CarsPage() {
 
           {loading ? (
             <div className="panel panel--centered">
-              <p>Loading cars...</p>
+              <p>Cargando autos...</p>
             </div>
           ) : totalCars === 0 ? (
             <div className="panel panel--centered">
-              <p>No cars registered yet. Create your first one using the form.</p>
+              <p>Aun no hay autos registrados. Crea el primero usando el formulario.</p>
             </div>
           ) : filteredCars.length === 0 ? (
             <div className="panel panel--centered">
-              <p>No cars match the current search or filters.</p>
+              <p>No hay autos que coincidan con la busqueda o los filtros actuales.</p>
               <button
                 type="button"
                 className="button button--ghost"
                 onClick={clearFilters}
               >
-                Show all cars
+                Mostrar todos los autos
               </button>
             </div>
           ) : (

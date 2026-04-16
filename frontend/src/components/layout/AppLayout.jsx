@@ -10,10 +10,10 @@ function AppLayout() {
       <header className="app-shell__header">
         <div className="brand-block">
           <p className="app-shell__eyebrow">{APP_NAME}</p>
-          <h1>Autos Management Portal</h1>
+          <h1>Portal de Gestion de Autos</h1>
           <p className="brand-block__text">
-            Register, authenticate, and manage vehicles connected to the Spring
-            Boot API.
+            Registra tu cuenta, inicia sesion y administra tus vehiculos conectados
+            a la API desarrollada en Spring Boot.
           </p>
         </div>
 
@@ -21,7 +21,7 @@ function AppLayout() {
           {isAuthenticated ? (
             <>
               <span className="user-chip">
-                {user?.name || user?.email || "Authenticated user"}
+                {user?.name || user?.email || "Usuario autenticado"}
               </span>
               <NavLink
                 to={ROUTES.cars}
@@ -29,14 +29,14 @@ function AppLayout() {
                   isActive ? "nav-link nav-link--active" : "nav-link"
                 }
               >
-                Cars
+                Autos
               </NavLink>
               <button
                 type="button"
                 className="button button--ghost"
                 onClick={() => logout()}
               >
-                Logout
+                Cerrar sesion
               </button>
             </>
           ) : (
@@ -47,7 +47,7 @@ function AppLayout() {
                   isActive ? "nav-link nav-link--active" : "nav-link"
                 }
               >
-                Login
+                Iniciar sesion
               </NavLink>
               <NavLink
                 to={ROUTES.register}
@@ -55,7 +55,7 @@ function AppLayout() {
                   isActive ? "nav-link nav-link--active" : "nav-link"
                 }
               >
-                Register
+                Registrarse
               </NavLink>
             </>
           )}

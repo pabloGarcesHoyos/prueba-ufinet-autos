@@ -3,9 +3,12 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
     <div className="panel">
       <div className="panel__header">
         <div>
-          <p className="section-kicker">Your garage</p>
-          <h2>Registered cars</h2>
-          <p>{cars.length} result{cars.length === 1 ? "" : "s"} available.</p>
+          <p className="section-kicker">Tu garaje</p>
+          <h2>Autos registrados</h2>
+          <p>
+            {cars.length} resultado{cars.length === 1 ? "" : "s"} disponible
+            {cars.length === 1 ? "" : "s"}.
+          </p>
         </div>
       </div>
 
@@ -13,13 +16,13 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
         <table className="cars-table">
           <thead>
             <tr>
-              <th>Brand</th>
-              <th>Model</th>
-              <th>Year</th>
-              <th>Plate</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Anio</th>
+              <th>Placa</th>
               <th>Color</th>
-              <th>Photo</th>
-              <th>Actions</th>
+              <th>Foto</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -34,7 +37,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                   {car.photoName ? (
                     <span className="table-badge">{car.photoName}</span>
                   ) : (
-                    <span className="muted-text">No photo note</span>
+                    <span className="muted-text">Sin referencia</span>
                   )}
                 </td>
                 <td>
@@ -44,7 +47,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                       className="button button--ghost"
                       onClick={() => onEdit(car.id)}
                     >
-                      Edit
+                      Editar
                     </button>
                     <button
                       type="button"
@@ -52,7 +55,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                       onClick={() => onDelete(car.id)}
                       disabled={deletingId === car.id}
                     >
-                      {deletingId === car.id ? "Deleting..." : "Delete"}
+                      {deletingId === car.id ? "Eliminando..." : "Eliminar"}
                     </button>
                   </div>
                 </td>
@@ -71,7 +74,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                   {car.brand} {car.model}
                 </h3>
                 <p>
-                  {car.year} · {car.color}
+                  {car.year} - {car.color}
                 </p>
               </div>
               <span className="table-badge">{car.plateNumber}</span>
@@ -79,15 +82,15 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
 
             <dl className="car-card__details">
               <div>
-                <dt>Brand</dt>
+                <dt>Marca</dt>
                 <dd>{car.brand}</dd>
               </div>
               <div>
-                <dt>Model</dt>
+                <dt>Modelo</dt>
                 <dd>{car.model}</dd>
               </div>
               <div>
-                <dt>Year</dt>
+                <dt>Anio</dt>
                 <dd>{car.year}</dd>
               </div>
               <div>
@@ -95,8 +98,8 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                 <dd>{car.color}</dd>
               </div>
               <div>
-                <dt>Photo</dt>
-                <dd>{car.photoName || "No photo note"}</dd>
+                <dt>Foto</dt>
+                <dd>{car.photoName || "Sin referencia"}</dd>
               </div>
             </dl>
 
@@ -106,7 +109,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                 className="button button--ghost"
                 onClick={() => onEdit(car.id)}
               >
-                Edit
+                Editar
               </button>
               <button
                 type="button"
@@ -114,7 +117,7 @@ function CarsTable({ cars, deletingId, onEdit, onDelete }) {
                 onClick={() => onDelete(car.id)}
                 disabled={deletingId === car.id}
               >
-                {deletingId === car.id ? "Deleting..." : "Delete"}
+                {deletingId === car.id ? "Eliminando..." : "Eliminar"}
               </button>
             </div>
           </article>
