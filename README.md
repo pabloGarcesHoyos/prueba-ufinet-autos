@@ -357,5 +357,4 @@ Posibles siguientes pasos:
 - implementar carga real de imágenes
 
 ## Autor
-
-Entrega técnica desarrollada para `prueba-ufinet-autos`.
+Pablo Garces Hoyos
