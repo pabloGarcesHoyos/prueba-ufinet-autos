@@ -140,7 +140,7 @@ function CarsPage() {
 
       updateCarPhoto(affectedCarId, photoName);
     } catch (error) {
-      setFormError(getErrorMessage(error, "No fue posible guardar la informacion del auto."));
+      setFormError(getErrorMessage(error, "No fue posible guardar la información del auto."));
     } finally {
       setSubmitting(false);
     }
@@ -171,7 +171,7 @@ function CarsPage() {
 
   async function handleDelete(id) {
     const confirmed = window.confirm(
-      "Estas seguro de que deseas eliminar este auto?"
+      "¿Estás seguro de que deseas eliminar este auto?"
     );
 
     if (!confirmed) {
@@ -237,17 +237,17 @@ function CarsPage() {
   const totalCars = carsWithPhoto.length;
   const resultLabel =
     totalCars === 0
-      ? "Aun no tienes autos registrados."
+      ? "Aún no tienes autos registrados."
       : `${filteredCars.length} de ${totalCars} auto${totalCars === 1 ? "" : "s"} mostrados`;
 
   return (
     <section className="cars-page">
       <div className="page-intro">
         <div>
-          <p className="section-kicker">Area privada</p>
+          <p className="section-kicker">Área privada</p>
           <h2>Panel de autos</h2>
           <p>
-            Gestiona los vehiculos asociados a {user?.name || user?.email || "tu cuenta"}.
+            Gestiona los vehículos asociados a {user?.name || user?.email || "tu cuenta"}.
           </p>
         </div>
 
@@ -275,19 +275,10 @@ function CarsPage() {
           <section className="panel filters-panel">
             <div className="filters-panel__header">
               <div>
-                <p className="section-kicker">Consulta rapida</p>
-                <h2>Busqueda y filtros</h2>
-                <p className="results-copy">{resultLabel}</p>
+                <p className="section-kicker">Filtrar autos</p>
+                <h2>Encuentra tus registros</h2>
               </div>
-
-              <button
-                type="button"
-                className="button button--ghost"
-                onClick={clearFilters}
-                disabled={!hasActiveFilters}
-              >
-                Limpiar filtros
-              </button>
+              <p className="results-copy">{resultLabel}</p>
             </div>
 
             <div className="filters-grid">
@@ -317,12 +308,12 @@ function CarsPage() {
               </label>
 
               <label className="field">
-                <span>Anio</span>
+                <span>Año</span>
                 <select
                   value={selectedYear}
                   onChange={(event) => setSelectedYear(event.target.value)}
                 >
-                  <option value="">Todos los anios</option>
+                  <option value="">Todos los años</option>
                   {yearOptions.map((year) => (
                     <option key={year} value={year}>
                       {year}
@@ -330,7 +321,33 @@ function CarsPage() {
                   ))}
                 </select>
               </label>
+
+              <div className="filters-actions">
+                <button
+                  type="button"
+                  className="button button--ghost button--block"
+                  onClick={clearFilters}
+                  disabled={!hasActiveFilters}
+                >
+                  Limpiar filtros
+                </button>
+              </div>
             </div>
+
+            {hasActiveFilters ? (
+              <div className="active-filters">
+                <span className="active-filters__label">Activos:</span>
+                {normalizedSearch ? (
+                  <span className="filter-chip">Búsqueda: {searchTerm.trim()}</span>
+                ) : null}
+                {selectedBrand ? (
+                  <span className="filter-chip">Marca: {selectedBrand}</span>
+                ) : null}
+                {selectedYear ? (
+                  <span className="filter-chip">Año: {selectedYear}</span>
+                ) : null}
+              </div>
+            ) : null}
           </section>
 
           {loading ? (
@@ -339,11 +356,11 @@ function CarsPage() {
             </div>
           ) : totalCars === 0 ? (
             <div className="panel panel--centered">
-              <p>Aun no hay autos registrados. Crea el primero usando el formulario.</p>
+              <p>Aún no hay autos registrados. Crea el primero usando el formulario.</p>
             </div>
           ) : filteredCars.length === 0 ? (
             <div className="panel panel--centered">
-              <p>No hay autos que coincidan con la busqueda o los filtros actuales.</p>
+              <p>No hay autos que coincidan con la búsqueda o los filtros actuales.</p>
               <button
                 type="button"
                 className="button button--ghost"
